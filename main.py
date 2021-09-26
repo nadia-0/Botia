@@ -4,7 +4,7 @@ from discord_slash import SlashCommand, SlashContext
 from dotenv import load_dotenv
 
 load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+TOKEN = os.getenv('DEV_TOKEN')
 bot = commands.Bot(command_prefix="bt", intents=discord.Intents.all())
 slash = SlashCommand(bot)
 guild_ids = [781590063653191701, 456602312920530945, 621888002804678656]
@@ -39,8 +39,14 @@ async def _quote(ctx):
     data = c.fetchall()
     for row in data:
         await ctx.send(row[0] + ' -' + row[1])
-
-    
 # endregion
+
+
+# TODO: make a command that reads the amount of people in a vc and if it's >=8, start the server
+@slash.slash(name='scp',
+             description='CLASS D CLASS D CLASS D CLASS D',
+             guild_ids=mafia_id)
+async def _scp(ctx):
+    await ctx.send("scp")
 
 bot.run(TOKEN)
