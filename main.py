@@ -81,7 +81,6 @@ async def _quote(ctx):
 #              guild_ids=mafia_id)
 async def _scp(ctx):
     await ctx.send("scp")
-=======
 # endregion
 
 
