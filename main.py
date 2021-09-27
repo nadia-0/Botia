@@ -5,12 +5,11 @@ from discord_slash.utils.manage_commands import create_choice, create_option
 from dotenv import load_dotenv
 
 load_dotenv()
-TOKEN = os.getenv('TOKEN')
+TOKEN = os.getenv('DISCORD_TOKEN')
 bot = commands.Bot(command_prefix="bt", intents=discord.Intents.all())
 slash = SlashCommand(bot, sync_commands=True)
 guild_ids = [781590063653191701, 456602312920530945, 621888002804678656]
 mafia_id = [781590063653191701, 456602312920530945]
-
 conn = sqlite3.connect('quotes.db')
 c = conn.cursor()
 
