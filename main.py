@@ -25,7 +25,7 @@ async def on_ready():
 
 
 @slash.slash(name="ping",
-             description="Checks the ping to the bot",
+             description="Do it >:)",
              guild_ids=guild_ids)
 async def _ping(ctx):
     await ctx.send(f"Pong! ({round(bot.latency*1000)}ms)")
@@ -38,9 +38,9 @@ async def _quote(ctx):
     c.execute('SELECT * FROM QUOTES ORDER BY RANDOM() LIMIT 1')
     data = c.fetchall()
     for row in data:
-        await ctx.send(row[0])
+        await ctx.send(row[0] + ' -' + row[1])
 
-    
+
 # endregion
 
 bot.run(TOKEN)
