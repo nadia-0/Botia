@@ -39,7 +39,7 @@ async def _quote(ctx):
     data = c.fetchall()
     for row in data:
         await ctx.send(row[0] + ' -' + row[1])
-
+        
 
 # endregion
 
