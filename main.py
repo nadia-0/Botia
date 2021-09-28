@@ -35,6 +35,7 @@ async def on_ready():
 async def _ping(ctx):
     await ctx.send(f"Pong! ({round(bot.latency*1000)}ms)")
 
+
 @slash.slash(
     name='diceroll',
     description='rolls a die of your choosing',
@@ -54,6 +55,7 @@ async def _coinflip(ctx):
         await ctx.send("You flipped heads!")
     else:
         await ctx.send("You flipped tails!")
+
 
 @slash.slash(
     name='bottom',
@@ -80,9 +82,9 @@ async def _coinflip(ctx):
 )
 async def _bottomSpeak(ctx, option:str):
     if option == "lower":
-        await ctx.send( ''.join(random.choice(string.ascii_lowercase) for i in range(random.randint(0,50))))
+        await ctx.send( ''.join(random.choice(string.ascii_lowercase) for i in range(random.randint(6,50))))
     elif option == "upper":
-        await ctx.send( ''.join(random.choice(string.ascii_uppercase) for i in range(random.randint(0,50))))
+        await ctx.send( ''.join(random.choice(string.ascii_uppercase) for i in range(random.randint(6,50))))
 
 
 @slash.slash(
