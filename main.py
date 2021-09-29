@@ -42,7 +42,10 @@ async def _ping(ctx):
     guild_ids=guild_ids
 )
 async def _diceroll(ctx, sides:int):
-    await ctx.send(f"You rolled a {random.randint(0, sides)} on a {sides} sided die!")
+    if sides <= 1:
+        await ctx.send(f"You silly, you can't roll a {sides} sieded die!")
+    else:
+        await ctx.send(f"You rolled a {random.randint(1, sides)} on a {sides} sided die!")
 
 
 @slash.slash(
