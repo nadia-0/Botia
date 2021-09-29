@@ -35,13 +35,17 @@ async def on_ready():
 async def _ping(ctx):
     await ctx.send(f"Pong! ({round(bot.latency*1000)}ms)")
 
+
 @slash.slash(
     name='diceroll',
     description='rolls a die of your choosing',
     guild_ids=guild_ids
 )
 async def _diceroll(ctx, sides:int):
-    await ctx.send(f"You rolled a {random.randint(0, sides)} on a {sides} sided die!")
+    if sides <= 1:
+        await ctx.send(f"You silly, you can't roll a {sides} sieded die!")
+    else:
+        await ctx.send(f"You rolled a {random.randint(1, sides)} on a {sides} sided die!")
 
 
 @slash.slash(
@@ -54,6 +58,7 @@ async def _coinflip(ctx):
         await ctx.send("You flipped heads!")
     else:
         await ctx.send("You flipped tails!")
+
 
 @slash.slash(
     name='bottom',
