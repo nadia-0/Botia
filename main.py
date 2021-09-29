@@ -43,7 +43,7 @@ async def _ping(ctx):
 )
 async def _diceroll(ctx, sides:int):
     if sides <= 1:
-        await ctx.send(f"You silly, you can't roll a {sides} sieded die!")
+        await ctx.send(f"You silly, you can't roll a {sides} sided die!")
     else:
         await ctx.send(f"You rolled a {random.randint(1, sides)} on a {sides} sided die!")
 
