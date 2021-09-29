@@ -11,7 +11,9 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 bot = commands.Bot(command_prefix="bt", intents=discord.Intents.all())
 slash = SlashCommand(bot, sync_commands=True)
 
-guild_ids = [781590063653191701, 456602312920530945, 621888002804678656]
+# TODO: Find a way to auto populate thsee OR get global commands working
+guild_ids = [781590063653191701, 456602312920530945,
+             621888002804678656, 822957712241066024]
 mafia_id = [781590063653191701, 456602312920530945]
 
 conn = sqlite3.connect('quotes.db')
