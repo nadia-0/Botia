@@ -148,6 +148,7 @@ async def _quote(ctx):
         
         
 # TODO: make a command that reads the amount of people in a vc and if it's >=8, start the server
+#TODO make sure the rest of the bot works while the command is being used and also make sure you can stop the server
 # @slash.slash(name='scp',
 #              description='CLASS D CLASS D CLASS D CLASS D',
 #              guild_ids=mafia_id,
