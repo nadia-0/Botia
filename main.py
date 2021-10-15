@@ -1,4 +1,10 @@
-import discord, os, sqlite3, random, string
+import signal
+import discord
+import os
+import sqlite3
+import random
+import string
+import subprocess, time
 from discord.ext import commands
 from discord_slash import SlashCommand, SlashContext
 from discord_slash.utils.manage_commands import create_choice, create_option
@@ -13,7 +19,7 @@ slash = SlashCommand(bot, sync_commands=True)
 
 # TODO: Find a way to auto populate thsee OR get global commands working
 guild_ids = [781590063653191701, 456602312920530945,
-             621888002804678656, 822957712241066024]
+             621888002804678656, 822957712241066024, 879355746427474010]
 mafia_id = [781590063653191701, 456602312920530945]
 
 conn = sqlite3.connect('quotes.db')
@@ -144,9 +150,42 @@ async def _quote(ctx):
 # TODO: make a command that reads the amount of people in a vc and if it's >=8, start the server
 # @slash.slash(name='scp',
 #              description='CLASS D CLASS D CLASS D CLASS D',
-#              guild_ids=mafia_id)
-async def _scp(ctx):
-    await ctx.send("scp")
+#              guild_ids=mafia_id,
+#              options=[
+#                  create_option(
+#                      name="option",
+#                      description="What command?",
+#                      required=True,
+#                      option_type=3,
+#                      choices=[
+#                          create_choice(
+#                              name="Start",
+#                              value="start"
+#                          ),
+#                          create_choice(
+#                              name="Stop",
+#                              value="stop"
+#                          )
+#                      ]
+#                  )
+#              ])
+# async def _scp(ctx, option: str):
+#     if option == "start":
+#         await ctx.send("Updating the server, please wait...")
+#         subprocess.call(["E:\\Games\\steamcmd\\steamcmd.exe", "+@sSteamCmdForcePlatformType windows",
+#                         "+login anonymous", "+app_update 996560" "+beta publicbeta", "validate", "+quit"])
+#         os.chdir(
+#             "E:\\Games\\steamcmd\\steamapps\\common\\SCP Secret Laboratory Dedicated Server")
+#         server = subprocess.Popen(
+#             ["E:\\Games\\steamcmd\\steamapps\\common\\SCP Secret Laboratory Dedicated Server\\LocalAdmin.exe", "7777"])
+#         time.sleep(7.5)
+#         servPID = server.pid
+#         await ctx.send("Started")
+#     else:
+#         os.kill(servPID, signal.CTRL_C_EVENT)
+#         await ctx.send("Stopped the server")
+
+    
 # endregion
 
 
