@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 
 
 load_dotenv()
-TOKEN = os.getenv('DEV_TOKEN')
+TOKEN = os.getenv('DISCORD_TOKEN')
 
 bot = commands.Bot(command_prefix="bt", intents=discord.Intents.all())
 slash = SlashCommand(bot, sync_commands=True)
