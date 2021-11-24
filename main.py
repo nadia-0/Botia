@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 
 
 load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+TOKEN = os.getenv('DEV_TOKEN')
 
 bot = commands.Bot(command_prefix="bt", intents=discord.Intents.all())
 slash = SlashCommand(bot, sync_commands=True)
@@ -34,8 +34,11 @@ async def on_ready():
 
 @bot.event
 async def on_message(ctx):
+    m_hey = ''
     if bot.user.mentioned_in(ctx):
-        await ctx.channel.send('heyyyyyy')
+        for i in range(random.randint(1, 10)):
+            m_hey += 'y'
+        await ctx.channel.send('hey' + m_hey)
 
 
 @slash.slash(
