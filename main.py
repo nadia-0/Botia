@@ -17,13 +17,10 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 bot = commands.Bot(command_prefix="bt", intents=discord.Intents.all())
 slash = SlashCommand(bot, sync_commands=True)
 
-# TODO: Find a way to auto populate thsee OR get global commands working
-guild_ids = [781590063653191701, 456602312920530945,
-             621888002804678656, 822957712241066024, 879355746427474010]
-mafia_id = [781590063653191701, 456602312920530945]
+# mafia_id = [781590063653191701, 456602312920530945]
 
-conn = sqlite3.connect('quotes.db')
-c = conn.cursor()
+# conn = sqlite3.connect('quotes.db')
+# c = conn.cursor()
 
 
 @bot.event
@@ -35,11 +32,16 @@ async def on_ready():
     print(f"{bot.user.name} is in {str(guild_count)} servers.")
     print(f"{bot.user.name}\'s id is {bot.user.id}")
 
+@bot.event
+async def on_message(ctx):
+    if bot.user.mentioned_in(ctx):
+        await ctx.channel.send('heyyyyyy')
+
 
 @slash.slash(
     name="ping",
-    description="Do it >:)",
-    guild_ids=guild_ids)
+    description="Do it >:)"
+    )
 async def _ping(ctx):
     await ctx.send(f"Pong! ({round(bot.latency*1000)}ms)")
 
@@ -47,7 +49,6 @@ async def _ping(ctx):
 @slash.slash(
     name='diceroll',
     description='rolls a die of your choosing',
-    guild_ids=guild_ids
 )
 async def _diceroll(ctx, sides:int):
     if sides <= 1:
@@ -59,7 +60,6 @@ async def _diceroll(ctx, sides:int):
 @slash.slash(
     name='coinflip',
     description='flips a coin',
-    guild_ids=guild_ids
 )
 async def _coinflip(ctx):
     if random.randint(1,2) == 1:
@@ -71,7 +71,6 @@ async def _coinflip(ctx):
 @slash.slash(
     name='bottom',
     description='alnskjdfnaljkhalskjg',
-    guild_ids=guild_ids,
     options=[
         create_option(
             name="option",
@@ -101,7 +100,6 @@ async def _bottomSpeak(ctx, option:str):
 @slash.slash(
     name="gif",
     description="funy gifs :)",
-    guild_ids=guild_ids,
     options=[
         create_option(
             name="option",
@@ -135,20 +133,20 @@ async def _gif(ctx, option:str):
 
 
 # region Mafia-specific
-@slash.slash(
-    name="quote",
-    description="Gives a random quote from the Art of War",
-    guild_ids=mafia_id
-)
-async def _quote(ctx):
-    c.execute('SELECT * FROM QUOTES ORDER BY RANDOM() LIMIT 1')
-    data = c.fetchall()
-    for row in data:
-        await ctx.send(row[0] + ' -' + row[1])
+# @slash.slash(
+#     name="quote",
+#     description="Gives a random quote from the Art of War",
+#     guild_ids=mafia_id
+# )
+# async def _quote(ctx):
+#     c.execute('SELECT * FROM QUOTES ORDER BY RANDOM() LIMIT 1')
+#     data = c.fetchall()
+#     for row in data:
+#         await ctx.send(row[0] + ' -' + row[1])
         
         
 # TODO: make a command that reads the amount of people in a vc and if it's >=8, start the server
-#TODO make sure the rest of the bot works while the command is being used and also make sure you can stop the server
+# TODO: make sure the rest of the bot works while the command is being used and also make sure you can stop the server
 # @slash.slash(name='scp',
 #              description='CLASS D CLASS D CLASS D CLASS D',
 #              guild_ids=mafia_id,
